@@ -1,0 +1,44 @@
+/**
+ * config.js.example
+ * Configuration file for inBloom API and OAuth2 information.
+ * 
+ * Follow these steps to setup the configuration file
+ * 1) Rename this file to config.js
+ * 2) Enter the appropriate values for the following variables in this configuration file:
+ *     a) config.api.client_id
+ *     b) config.api.client_secret
+ *     c) config.api.callback_uri
+ *     d) config.app.port
+ * 3) Ensure the appropriate values is assigned to the following variables in this configuration file:
+ *     a) config.api.api_version
+ *
+ * @author  Lindsay Parker
+ * @version 1.0.0, 18 JUN 2013
+ */
+
+var config = {};
+
+config.app = {};
+
+// This port number (number value) must be the same port number registered in redirect url of application's inBloom Sandbox
+config.app.port = YOUR_PORT_NUMBER_HERE;
+
+config.api = {};
+
+// Replace value with application client id (string value), given by inBloom
+config.api.client_id = 'YOUR_CLIENT_ID_HERE';
+
+// Replace value with application client secret (string value), given by inBloom
+config.api.client_secret = 'YOUR_CLIENT_SECRET_HERE';
+
+// This callback uri (string value) must be the same as the callback uri registered in application's inBloom Sandbox.
+config.api.callback_uri = 'YOUR_CALLBACK_URI_HERE'; 
+
+config.api.api_version = 'v1.2';
+config.api.api_call_append = '/api/rest/';
+config.api.base_url = 'https://api.sandbox.inbloom.org';
+config.api.authorization_endpoint = '/api/oauth/authorize';
+config.api.token_endpoint = '/api/oauth/token';
+  
+ 
+module.exports = config;
