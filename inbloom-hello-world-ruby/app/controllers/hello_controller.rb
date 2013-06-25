@@ -1,26 +1,29 @@
 class HelloController < ApplicationController
+
   def index
   
    	if session[:token]
+   	  redirect_to :controller => 'recipe', :action => 'index'
 			#@endpoint = 'home'
 			#url = REST_URL + @endpoint
 			#@rest_home = RestClient.get url, headers
 			
 	# Start recipe #3 and #4
-      #staff_loc = create_staff()
-			#logger.info "New Staff Location: " + staff_loc
+#      staff_loc = create_staff()
+#			logger.info "New Staff Location: " + staff_loc
 			
-			#edu_org = JSON.parse RestClient.get REST_URL + "educationOrganizations", headers
-      # logger.info "EduOrg: " + edu_org.inspect   
+#			edu_org = JSON.parse RestClient.get REST_URL + "educationOrganizations", headers
+#			edu_org_loc = REST_URL + "educationOrganizations" + edu_org[0]["id"]
+#       logger.info "EduOrg: " + edu_org.inspect   
           
-      #staff_assoc_loc = associate_with_edu_org(staff_loc)
-      #logger.info "New Staff Assoc Location: " + staff_assoc_loc
+#      staff_assoc_loc = associate_with_edu_org(staff_loc, edu_org_loc)
+#      logger.info "New Staff Assoc Location: " + staff_assoc_loc
       
-      #@endpoint = staff_assoc_loc.sub REST_URL, ""
-      #@json = JSON.parse RestClient.get staff_assoc_loc, headers
+#      @endpoint = staff_assoc_loc.sub REST_URL, ""
+#      @json = JSON.parse RestClient.get staff_assoc_loc, headers
 
-      #RestClient.delete staff_assoc_loc, headers
-      #RestClient.delete staff_loc, headers
+#      RestClient.delete staff_assoc_loc, headers
+#      RestClient.delete staff_loc, headers
  	# End recipe #3 and #4
       
   # Start recipe #5, #6, #7
@@ -56,6 +59,39 @@ class HelloController < ApplicationController
   # Stop Recpipe #10
   
 	  end 	
+  end
+
+# Start Recipe #4  
+  # Associate staff with an educational organization
+  def associate_with_edu_org( staff_url, edu_org_url )
+    staff = JSON.parse RestClient.get staff_url, headers
+    staff_id = staff['id']
+        
+    edu_org = JSON.parse RestClient.get REST_URL + "educationOrganizations", headers
+    edu_org_id = edu_org[0]['id']
+
+    staff_class = "Other"
+    begin_date =  "2013-05-01" 
+      
+    assoc = staff_education_organization_association( staff_id, edu_org_id, staff_class, begin_date)
+    #    logger.info "Assoc: " + assoc.to_json
+
+    url = REST_URL + "staffEducationOrgAssignmentAssociations"
+
+    response = RestClient.post url, assoc.to_json, headers
+    #    logger.info "Staff-EduOrg Association Location: " + response.headers[:location]
+    return response.headers[:location]
+  end
+
+ 
+  def staff_education_organization_association( staff_id, edu_org_id, staff_class, begin_date,  optional = {} )
+    association_hash = {
+      :staffReference => staff_id,
+      :educationOrganizationReference => edu_org_id,
+      :staffClassification =>  staff_class,
+      :beginDate => begin_date
+    }
+    association_hash.update optional
   end
   
   # Start Recipe #8
@@ -129,42 +165,11 @@ end
      assessment_identification_code.update optional
   end
 
-  # Start Recipe #4  
-  # Associate staff with an educational organization
-  def associate_with_edu_org( staff_url, edu_org_url )
-    staff = JSON.parse RestClient.get staff_url, headers
-    staff_id = staff['id']
-        
-    edu_org = JSON.parse RestClient.get REST_URL + "educationOrganizations", headers
-    edu_org_id = edu_org[0]['id']
-
-    staff_class = "Other"
-    begin_date =  "2013-05-01" 
-      
-    assoc = staff_education_organization_association( staff_id, edu_org_id, staff_class, begin_date)
-    #    logger.info "Assoc: " + assoc.to_json
-
-    url = REST_URL + "staffEducationOrgAssignmentAssociations"
-
-    response = RestClient.post url, assoc.to_json, headers
-    #    logger.info "Staff-EduOrg Association Location: " + response.headers[:location]
-    return response.headers[:location]
-  end
-
- 
-  def staff_education_organization_association( staff_id, edu_org_id, staff_class, begin_date,  optional = {} )
-    association_hash = {
-      :staffReference => staff_id,
-      :educationOrganizationReference => edu_org_id,
-      :staffClassification =>  staff_class,
-      :beginDate => begin_date
-    }
-    association_hash.update optional
-  end
+  
    
   # Start Recipe #3
   def create_staff() 
-    new_staff = staff("yyy0", name("John", "Doe"), "Male", "No Degree")
+    new_staff = staff("yyy", name("John", "Doe"), "Male", "No Degree")
     
     url = REST_URL + 'staff'
     logger.info "Staff: " + new_staff.to_json
