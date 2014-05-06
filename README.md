@@ -1,7 +1,7 @@
 #inBloom Cookbook
 
 ##DESCRIPTION
-Sample code and recipes for working with inBloom software APIs
+Sample code and recipes for working with software APIs
 
 
 ##SYSTEM REQUIREMENTS
