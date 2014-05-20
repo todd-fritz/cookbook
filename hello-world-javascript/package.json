@@ -1,0 +1,27 @@
+{
+  "name": "inbloom-js-cookbook",
+  "version": "1.0.0",
+  "author": "inBloom <support@inbloom.org>",
+  "description": "a simple cookbook to help developers",
+  "contributors": [
+    {
+      "name": "Lindsay Parker",
+      "email": "lparker@osintegrators.com"
+    }
+  ],
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "..."
+  },
+  "dependencies": {
+    "express": "3.2.4",
+    "jade": "0.31.1",
+    "request": "2.21.0",
+    "restify": "2.5.1",
+    "stylus": "0.32.1"
+  }
+}

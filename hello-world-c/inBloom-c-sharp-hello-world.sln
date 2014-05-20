@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inBloom-c-sharp-hello-world", "inBloom-c-sharp-hello-world\inBloom-c-sharp-hello-world.csproj", "{A55BF691-0DFD-4087-89C5-9489C93871B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InBloomClient", "InBloomClient\InBloomClient\InBloomClient.csproj", "{739CAFC2-E885-454E-B645-C887C092A6D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A55BF691-0DFD-4087-89C5-9489C93871B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55BF691-0DFD-4087-89C5-9489C93871B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55BF691-0DFD-4087-89C5-9489C93871B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55BF691-0DFD-4087-89C5-9489C93871B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{739CAFC2-E885-454E-B645-C887C092A6D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{739CAFC2-E885-454E-B645-C887C092A6D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{739CAFC2-E885-454E-B645-C887C092A6D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{739CAFC2-E885-454E-B645-C887C092A6D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
